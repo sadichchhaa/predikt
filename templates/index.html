@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
 
 <head>
 	<meta charset="UTF-8">
@@ -20,7 +18,7 @@
 	<body class="container bg-light">
 		<!-- Start Header form -->
 		<div class="text-center pt-5">
-			<img src="https://i.ibb.co/8cDgdFX/Logo.png" alt="network-logo" width="72" height="72" />
+			<img src="../assets/logo.png" alt="network-logo" width="72" height="72" />
 			<h2>Predikt</h2>
 			<p>
 				Genetic Disorder Predictor for Early Diagnosis
@@ -33,7 +31,7 @@
 			<!-- Start Card Body -->
 			<div class="card-body">
 				<!-- Start Form -->
-				<form id="inputForm" action="#" method="" class="needs-validation" novalidate autocomplete="off">
+				<form id="inputForm" action="{{ url_for('predict')}}" method="post" class="needs-validation" novalidate autocomplete="off">
 					<!-- Start Input Name -->
 					<div class="form-group">
 						<label for="inputName">Name</label>
@@ -57,15 +55,6 @@
 					</div>
 					<!-- End Input Gender -->
 
-					<!-- Start Input Email -->
-					<!-- <div class="form-group">
-						<label for="inputGender">Email</label>
-						<input type="email" class="form-control" id="inputEmail" name="email" placeholder="Enter email"
-							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-						<small class="form-text text-muted">We'll never share your email with anyone else.</small>
-					</div> -->
-					<!-- End Input Email -->
-
 					<!-- Start Input Age -->
 					<div class="form-group">
 						<label for="inputAge">Age</label>
@@ -73,7 +62,7 @@
 						<small class="form-text text-muted">We'll never share your age with anyone
 							else.</small>
 					</div>
-					<!-- End Input Telephone -->
+					<!-- End Input Age -->
 
 					<!-- Start Input Mother's Age | Father's Age -->
 					<div class="form-row">
@@ -95,106 +84,225 @@
 					</div>
 					<!-- End Input Mother's Age | Father's Age -->
 
-					<!-- Start Check Room Type -->
+					<!-- Start Input Respiratory Rate | Heart Rate -->
+					<div class="form-row">
+						<!-- Start Input Respiratory Rate -->
+						<div class="form-group col-md-6">
+							<label for="inputrespiratoryRate">Respiratory Rate</label>
+							<div class="d-flex flex-row justify-content-between align-items-center">
+								<select class="form-control mr-1" id="inputrespiratoryRate" name="inputrespiratoryRate" required>
+									<option value="" disabled selected>Select</option>
+									<option value="female">Normal (30 - 60)</option>
+									<option value="male">Tachypnea</option>
+								</select>
+							</div>
+							<small class="form-text text-muted">Calculated as number of breaths per minute</small>
+						</div>
+						<!-- End Input Respiratory Rate -->
+
+						<!-- Start Input Heart Rate -->
+						<div class="form-group col-md-6">
+							<label for="inputHeartRate">Heart Rate</label>
+							<div class="d-flex flex-row justify-content-between align-items-center">
+								<select class="form-control mr-1" id="inputHeartRate" name="inputHeartRate" required>
+									<option value="" disabled selected>Select</option>
+									<option value="normal">Normal</option>
+									<option value="tachycardia">Tachycardia</option>
+								</select>
+							</div>
+							<small class="form-text text-muted">Calculated as number of beats per minute</small>
+						</div>
+						<!-- End Input Heart Rate -->
+					</div>
+					<!-- End Input Respiratory Rate | Heart Rate -->
+
+					<!-- Start Input Blood Test Result -->
 					<div class="form-group">
-						<legend class="col-form-label pt-0">Choose a Room</legend>
-						<div class="form-check form-check-inline">
-							<input type="radio" class="form-check-input" id="inlineRadioType1" name="roomType"
-								value="type1" required />
-							<label class="form-check-label" for="inlineRadioType1">Room 1 (10 People)</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input type="radio" class="form-check-input" id="inlineRadioType2" name="roomType"
-								value="type2" required />
-							<label class="form-check-label" for="inlineRadioType2">Room 2 (20 People)</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input type="radio" class="form-check-input" id="inlineRadioType3" name="roomType"
-								value="type3" required />
-							<label class="form-check-label" for="inlineRadioType3">Room 3 (30 People)</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input type="radio" class="form-check-input" id="inlineRadioType4" name="roomType"
-								value="type4" required />
-							<label class="form-check-label" for="inlineRadioType4">Room 4 (40 People)</label>
+						<label>Blood Test Result</label>
+						<div class="d-flex flex-row justify-content-between align-items-center">
+							<select class="form-control mr-1" id="bloodTestResult" name="bloodTestResult" required>
+								<option value="" disabled selected>Select</option>
+								<option value="normal">Normal</option>
+								<option value="slightAbnormal">Slightly Abnormal</option>
+								<option value="abnormal">Abnormal</option>
+								<option value="inconclusive">Inconclusive</option>
+							</select>
 						</div>
 					</div>
-					<!-- End Check Room Type -->
+					<!-- End Input Blood Test Result -->
+
+					<!-- Start Blood Cell Count | WBC Count -->
+					<div class="form-row">
+						<!-- Start Input Blood Cell Count -->
+						<div class="form-group col-md-6">
+							<label for="inputBloodCellCount">Blood Cell Count (in mCL)</label>
+							<input type="number" class="form-control" id="inputBloodCellCount" name="bloodCellCount"
+							pattern="\d+(\.\d+)?" required />
+						</div>
+						<!-- End Input Blood Cell Count -->
+
+						<!-- Start Input WBC Count -->
+						<div class="form-group col-md-6">
+							<label for="inputWbc">White Blood Cell Count (thousand per microlitre)</label>
+							<input type="number" class="form-control" id="inputWbc" name="wbc"
+							pattern="\d+(\.\d+)?" required />
+						</div>
+						<!-- End Input WBC Count -->
+					</div>
+					<!-- End Input Blood Cell Count | WBC Count -->
 
 					<hr />
 
-					<!-- Start Check Snack Type -->
+					<!-- Start History of User Section -->
 					<div class="form-row">
-						<legend class="col-form-label pb-3">Snack and Drink</legend>
-						<div class="row px-1">
-							<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
-								<img src="https://i.ibb.co/k4tBpTp/snack-set-1.jpg" alt="snack-box-set-1"
-									class="img-thumbnail" />
-								<br />
-								<label for=" inputSnack1">Sandwich Set 1</label>
-								<input type="number" class="form-control" id="inputSnack1" name="snack1" min="0"
-									max="40" />
-								<small class="form-text text-muted">Crabstick Sandwich.</small>
-							</div>
-							<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
-								<img src="https://i.ibb.co/DW0cv1s/snack-set-2.jpg" alt="snack-box-set-2"
-									class="img-thumbnail" />
-								<br />
-								<label for="inputSnack2">Sandwich Set 2</label>
-								<input type="number" class="form-control" id="inputSnack2" name="snack2" min="0"
-									max="40" />
-								<small class="form-text text-muted">Tuna Sandwich.</small>
-							</div>
-							<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
-								<img src="https://i.ibb.co/YdZF2Q8/snack-set-3.jpg" alt="snack-box-set-3"
-									class="img-thumbnail" />
-								<br />
-								<label for="inputSnack3">Sandwich Set 3</label>
-								<input type="number" class="form-control" id="inputSnack3" name="snack3" min="0"
-									max="40" />
-								<small class="form-text text-muted">Crab Roll Sandwich.</small>
-							</div>
-							<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
-								<img src="https://i.ibb.co/6mZ2zb0/snack-set-4.jpg" alt="snack-box-set-4"
-									class="img-thumbnail" />
-								<br />
-								<label for="inputSnack4">Sandwich Set 4</label>
-								<input type="number" class="form-control" id="inputSnack4" name="snack4" min="0"
-									max="40" />
-								<small class="form-text text-muted">Tuna Sandwich.</small>
-							</div>
-							<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
-								<img src="https://i.ibb.co/1rsRBD1/snack-set-5.jpg" alt="snack-box-set-5"
-									class="img-thumbnail" />
-								<br />
-								<label for="inputSnack5">Sandwich Set 5</label>
-								<input type="number" class="form-control" id="inputSnack5" name="snack5" min="0"
-									max="40" />
-								<small class="form-text text-muted">Ham Sandwich.</small>
-							</div>
-							<div class="form-group col-lg-2 col-md-3 col-sm-4 col-6">
-								<img src="https://i.ibb.co/PhR8YDN/snack-set-6.jpg" alt="snack-box-set-6"
-									class="img-thumbnail" />
-								<br />
-								<label for="inputSnack5">Sandwich Set 6</label>
-								<input type="number" class="form-control" id="inputSnack6" name="snack6" min="0"
-									max="40" />
-								<small class="form-text text-muted">Roast Pork Bun.</small>
-							</div>
-						</div>
-					</div>
-					<!-- End Check Snack Type -->
+						<legend class="col-form-label pb-3"><strong>HISTORY OF USER</strong></legend>
 
-					<!-- Start Input Remark -->
-					<div class="form-group">
-						<label for="textAreaRemark">Notes</label>
-						<textarea class="form-control" name="remark" id="textAreaRemark" rows="2"
-							placeholder="Tell us you want more..."></textarea>
+						<!-- Start Input Birth Asphyxia -->
+						<div class="form-group col-md-12">
+							<label for="inputBirthAsphyxia">Birth Asphyxia?</label>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputBirthAsphyxiaYes" name="inputBirthAsphyxia"
+									value="yes" required />
+								<label class="form-check-label" for="inputBirthAsphyxiaYes">Yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputBirthAsphyxiaNo" name="inputBirthAsphyxia"
+									value="no" required />
+								<label class="form-check-label" for="inputBirthAsphyxiaNo">No</label>
+							</div>
+							</div>
+						<!-- End Input Birth Asphyxia -->
+
+						<!-- Start Input Birth Defects (if any) -->
+						<div class="form-group col-md-6">
+							<label for="inputBirthDefects">Birth Defects (if any)</label>
+							<div class="d-flex flex-row justify-content-between align-items-center">
+								<select class="form-control mr-1" id="inputBirthDefects" name="inputBirthDefects" required>
+									<option value="" disabled selected>Select</option>
+									<option value="none">None</option>
+									<option value="singular">Singular</option>
+									<option value="multiple">Multiple</option>
+								</select>
+							</div>
+							<small class="form-text text-muted">Defects diagnosed within 30 days of birth</small>
+						</div>
+						<!-- End Input Birth Defects (if any) -->
+
+						<!-- Start Input Folic Acid Levels -->
+						<div class="form-group col-md-6">
+							<label for="inputFolicAcidDetails">Pre-Conceptional Folic Acid Count of Mother</label>
+							<div class="d-flex flex-row justify-content-between align-items-center">
+								<select class="form-control mr-1" id="inputFolicAcidDetails" name="inputFolicAcidDetails" required>
+									<option value="" disabled selected>Select</option>
+									<option value="normal">Normal</option>
+									<option value="abnormal">Abnormal</option>
+								</select>
+							</div>
+							<small class="form-text text-muted">Mother's Folic Acid Levels before pregnancy</small>
+						</div>
+						<!-- End Input Folic Acid Levels -->
+
+						<!-- Start Input H/O Serious Maternal Illness -->
+						<div class="form-group col-md-6">
+							<label for="inputHoMaternalIllness">H/O Serious Maternal Illness</label><br/>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoMaternalIllnessYes" name="inputHoMaternalIllness"
+									value="yes" required />
+								<label class="form-check-label" for="inputHoMaternalIllnessYes">Yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoMaternalIllnessNo" name="inputHoMaternalIllness"
+									value="no" required />
+								<label class="form-check-label" for="inputHoMaternalIllnessNo">No</label>
+							</div>
+							</div>
+						<!-- End Input H/O Serious Maternal Illness -->
+
+						<!-- Start Input H/O Substance Abuse -->
+						<div class="form-group col-md-6">
+							<label for="inputHoSubstanceAbuse">H/O Substance Abuse </label><br/>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoSubstanceAbuseYes" name="inputHoSubstanceAbuse"
+									value="yes" required />
+								<label class="form-check-label" for="inputHoSubstanceAbuseYes">Yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoSubstanceAbuseNo" name="inputHoSubstanceAbuse"
+									value="no" required />
+								<label class="form-check-label" for="inputHoSubstanceAbuseNo">No</label>
+							</div>
+							</div>
+						<!-- End Input H/O Substance Abuse -->
+
+						<!-- Start Input H/O Radiation Exposure (X-Ray) -->
+						<div class="form-group col-md-6">
+							<label for="inputHoRadiationExposure">H/O Radiation Exposure (X-Ray)? </label><br/>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoRadiationExposureYes" name="inputHoRadiationExposure"
+									value="yes" required />
+								<label class="form-check-label" for="inputHoRadiationExposureYes">Yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoRadiationExposureNo" name="inputHoRadiationExposure"
+									value="no" required />
+								<label class="form-check-label" for="inputHoRadiationExposureNo">No</label>
+							</div>
+							<small class="form-text text-muted">History of Radiation Exposure within 30 days post-birth</small>
+							</div>
+						<!-- End Input H/O Radiation Exposure (X-Ray) -->
+
+						<!-- Start Input Assisted Conception -->
+						<div class="form-group col-md-6">
+							<label for="inputAssistedConception">Assisted Conception (IVF/ART)? </label><br/>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputAssistedConceptionYes" name="inputAssistedConception"
+									value="yes" required />
+								<label class="form-check-label" for="inputAssistedConceptionYes">Yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputAssistedConceptionNo" name="inputAssistedConception"
+									value="no" required />
+								<label class="form-check-label" for="inputAssistedConceptionNo">No</label>
+							</div>
+							<small class="form-text text-muted">Was patient conceived using assisted conception methods?</small>
+							</div>
+						<!-- End Input Assisted Conception -->
+
+						<!-- Start Input H/O Anomalies -->
+						<div class="form-group col-md-6">
+							<label for="inputHoAnomalies">History of anomalies in mother's previous pregnancies (if any)?</label><br/>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoAnomaliesYes" name="inputHoAnomalies"
+									value="yes" required />
+								<label class="form-check-label" for="inputAssistedConceptionYes">Yes</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoAnomaliesNo" name="inputHoAnomalies"
+									value="no" required />
+								<label class="form-check-label" for="inputHoAnomaliesNo">No</label>
+							</div>
+							<div class="form-check form-check-inline">
+								<input type="radio" class="form-check-input" id="inputHoAnomaliesNa" name="inputHoAnomalies"
+									value="na" required />
+								<label class="form-check-label" for="inputHoAnomaliesNa">NA</label>
+							</div>
+							</div>
+						<!-- End Input H/O Anomalies -->
+
+						<!-- Start Input Previous Abortions -->
+						<div class="form-group col-md-6">
+							<label for="inputPrevAbortions">Number of Previous Abortions (if any)?</label>
+							<input type="number" class="form-control" id="inputPrevAbortions" name="prevAbortions"
+								pattern="\d{1}" required />
+						</div>
+						<!-- End Input Previous Abortions -->
 					</div>
-					<!-- End Input Remark -->
+					<!-- End History of User Section -->
+
+					<hr />
 
 					<!-- Start Submit Button -->
-					<button class="btn btn-primary btn-block col-lg-2" type="submit">Submit</button>
+					<button class="btn btn-primary btn-block" type="submit">Predict</button>
 					<!-- End Submit Button -->
 				</form>
 				<!-- End Form -->
@@ -202,256 +310,14 @@
 			<!-- End Card Body -->
 		</div>
 		<!-- End Card -->
-		<footer>
-			<div class="my-4 text-muted text-center">
-				<p>© My Company</p>
-			</div>
-		</footer>
-
-		<!-- This is my bs -->
-		<div class="container">
-			<div class="prediction">
-				<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-					<a class="navbar-brand" href="#">Predikt</a>
-					<div class="collapse navbar-collapse" id="navbarText">
-						<span class="navbar-text">
-							Genetic Disorder Predictor for Early Diagnosis
-						</span>
-					</div>
-				</nav>
-				<h4>Enter medical details -- </h4>
-				<form action="{{ url_for('predict')}}" method="post">
-					<div class="form-group">
-						<label for="name">Name</label>
-						<input type="text" id="name" class="form-control" name="name" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="name">Gender</label>
-						<input type="text" id="gender" class="form-control" name="gender" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="age">Age</label>
-						<input type="text" id="age" class="form-control" name="age" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="motherAge">Mother's Age</label>
-						<input type="text" id="motherAge" class="form-control" name="motherAge" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="fatherAge">Father's Age</label>
-						<input type="text" id="fatherAge" class="form-control" name="fatherAge" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="bloodTestResult">Blood Test Result</label>
-						<input type="text" id="bloodTestResult" class="form-control" name="bloodTestResult"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="bloodCellCount">Blood Cell Count (in mCL)</label>
-						<input type="text" id="bloodCellCount" class="form-control" name="bloodCellCount"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="wbc">White Blood Cell Count (thousand per microlitre)</label>
-						<input type="text" id="wbc" class="form-control" name="wbc" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="respiratoryRate">Respiratory Rate (breaths per minute)</label>
-						<input type="text" id="respiratoryRate" class="form-control" name="respiratoryRate"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="heartRate">Heart Rate (beats per minute)</label>
-						<input type="text" id="heartRate" class="form-control" name="heartRate" required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="birthAsphyxia">Birth Asphyxia</label>
-						<input type="text" id="birthAsphyxia" class="form-control" name="birthAsphyxia"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="folicAcidStatus">Folic Acid Status</label>
-						<input type="text" id="folicAcidStatus" class="form-control" name="folicAcidStatus"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="maternalIllness">History of serious maternal illness?</label>
-						<input type="text" id="maternalIllness" class="form-control" name="maternalIllness"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="radiationExposure">History of radiation exposure?</label>
-						<input type="text" id="radiationExposure" class="form-control" name="radiationExposure"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="substanceAbuse">History of substance abuse?</label>
-						<input type="text" id="substanceAbuse" class="form-control" name="substanceAbuse"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="assistedConception">Assisted Conception (IVF/ART)?</label>
-						<input type="text" id="assistedConception" class="form-control" name="assistedConception"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="historyOfAnomalies">History of Anomalies in previous pregnancies?</label>
-						<input type="text" id="historyOfAnomalies" class="form-control" name="historyOfAnomalies"
-							required="required">
-					</div>
-					<div class="form-group col-md-6">
-						<label for="historyOfAnomalies">Number of previous abortions if any?</label>
-						<input type="text" id="historyOfAnomalies" class="form-control" name="historyOfAnomalies"
-							required="required">
-					</div>
-					<label for="workclass">Working Class</label>
-					<select id="workclass" name="workclass" required="required">
-						<option value="1">Federal-gov</option>
-						<option value="2">Local-gov</option>
-						<option value="3">Never-worked</option>
-						<option value="4">Private</option>
-						<option value="5">Self-emp-inc</option>
-						<option value="6">Self-emp-not-inc</option>
-						<option value="7">State-gov</option>
-						<option value="8">Without-pay</option>
-					</select>
-					<br>
-					<label for="education">Education</label>
-					<select id="education" name="education" required="required">
-						<option value="0">10th</option>
-						<option value="1">11th</option>
-						<option value="2">12th</option>
-						<option value="3">1st-4th</option>
-						<option value="4">5th-6th</option>
-						<option value="5">7th-8th</option>
-						<option value="6">9th</option>
-						<option value="7">Assoc-acdm</option>
-						<option value="8">Assoc-voc</option>
-						<option value="9">Bachelors</option>
-						<option value="10">Doctorate</option>
-						<option value="11">HS-grad</option>
-						<option value="12">Masters</option>
-						<option value="13">Preschool</option>
-						<option value="14">Prof-school</option>
-						<option value="15">Some-college</option>
-					</select>
-					<br>
-					<label for="marital-status">Marital Status</label>
-					<select id="marital-status" name="marital-status" required="required">
-						<option value="0">Divorced</option>
-						<option value="1">Married-AF-spouse</option>
-						<option value="2">Married-civ-spouse</option>
-						<option value="3">Married-spouse-absent</option>
-						<option value="4">Never-married'</option>
-						<option value="5">Separated</option>
-						<option value="6">Widowed</option>
-					</select>
-					<br>
-					<label for="occupation">Occupation</label>
-					<select id="occupation" name="occupation" required="required">
-						<option value="1">Adm-clerical</option>
-						<option value="2">Armed-Forces</option>
-						<option value="3">Craft-repair</option>
-						<option value="4">Exec-managerial</option>
-						<option value="5">Farming-fishing</option>
-						<option value="6">Handlers-cleaners</option>
-						<option value="7">Machine-op-inspct</option>
-						<option value="8">Other-service</option>
-						<option value="9">Priv-house-serv</option>
-						<option value="10">Prof-specialty</option>
-						<option value="11">Protective-serv</option>
-						<option value="12">Sales</option>
-						<option value="13">Tech-support</option>
-						<option value="14">Transport-moving</option>
-					</select>
-					<br>
-					<label for="relationship">Relationship</label>
-					<select id="relationship" name="relationship" required="required">
-						<option value="0">Husband</option>
-						<option value="1">Not-in-family</option>
-						<option value="2">Other-relative</option>
-						<option value="3">Own-child</option>
-						<option value="4">Unmarried</option>
-						<option value="5">Wife</option>
-					</select>
-					<br>
-					<label for="race">Race</label>
-					<select id="race" name="race" required="required">
-						<option value="0">Amer Indian Eskimo</option>
-						<option value="1">Asian Pac Islander</option>
-						<option value="2">Black</option>
-						<option value="3">Other</option>
-						<option value="4">White</option>
-					</select>
-					<br>
-					<label for="gender">Gender</label>
-					<select id="gender" name="gender" required="required">
-						<option value="0">Female</option>
-						<option value="1">Male</option>
-					</select>
-					<br>
-					<label for="capital-gain">Capital Gain </label>
-					<input type="text" id="capital-gain" name="capital-gain" required="required">btw:[0-99999]
-					<br>
-					<label for="capital-loss">Capital Loss </label>
-					<input type="text" id="capital-loss" name="capital-loss" required="required">btw:[0-4356]
-					<br>
-					<label for="hours-per-week">Hours per Week </label>
-					<input type="text" id="hours-per-week" name="hours-per-week" required="required">btw:[1-99]
-					<br>
-					<label for="native-country">Native Country</label>
-					<select id="native-country" name="native-country" required="required">
-						<option value="1">Cambodia</option>
-						<option value="2">Canada</option>
-						<option value="3">China</option>
-						<option value="4">Columbia</option>
-						<option value="5">Cuba</option>
-						<option value="6">Dominican Republic</option>
-						<option value="7">Ecuador</option>
-						<option value="8">El Salvadorr</option>
-						<option value="9">England</option>
-						<option value="10">France</option>
-						<option value="11">Germany</option>
-						<option value="12">Greece</option>
-						<option value="13">Guatemala</option>
-						<option value="14">Haiti</option>
-						<option value="15">Netherlands</option>
-						<option value="16">Honduras</option>
-						<option value="17">HongKong</option>
-						<option value="18">Hungary</option>
-						<option value="19">India</option>
-						<option value="20">Iran</option>
-						<option value="21">Ireland</option>
-						<option value="22">Italy</option>
-						<option value="23">Jamaica</option>
-						<option value="24">Japan</option>
-						<option value="25">Laos</option>
-						<option value="26">Mexico</option>
-						<option value="27">Nicaragua</option>
-						<option value="28">Outlying-US(Guam-USVI-etc)</option>
-						<option value="29">Peru</option>
-						<option value="30">Philippines</option>
-						<option value="31">Poland</option>
-						<option value="32">Portugal</option>
-						<option value="33">Puerto-Rico</option>
-						<option value="34">Scotland</option>
-						<option value="35">South</option>
-						<option value="36">Taiwan</option>
-						<option value="37">Thailand</option>
-						<option value="38">Trinadad&Tobago</option>
-						<option value="39">United States</option>
-						<option value="40">Vietnam</option>
-						<option value="41">Yugoslavia</option>
-					</select>
-					<br>
-					<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-				</form>
-
-				<br>
-				<b>{{ prediction_text }}</b>
-			</div>
-		</div>
+		
 		<script src="../app/index.js"></script>
 	</body>
+
+	<footer>
+		<div class="my-4 text-muted text-center">
+			<p>© Predikt</p>
+		</div>
+	</footer>
 
 </html>
