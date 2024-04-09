@@ -18,7 +18,7 @@
 	<body class="container bg-light">
 		<!-- Start Header form -->
 		<div class="text-center pt-5">
-			<img src="../assets/logo.png" alt="network-logo" width="72" height="72" />
+			<img src="https://github.com/sadichchhaa/predikt/blob/master/assets/logo.png" alt="network-logo" width="72" height="72" />
 			<h2>Predikt</h2>
 			<p>
 				Genetic Disorder Predictor for Early Diagnosis
@@ -47,9 +47,9 @@
 						<div class="d-flex flex-row justify-content-between align-items-center">
 							<select class="form-control mr-1" id="gender" name="gender" required>
 								<option value="" disabled selected>Select Gender</option>
-								<option value="female">Female</option>
-								<option value="male">Male</option>
-								<option value="undisclosed">Prefer not to say</option>
+								<option value="0">Female</option>
+								<option value="1">Male</option>
+								<option value="2">Prefer not to say</option>
 							</select>
 						</div>
 					</div>
@@ -90,10 +90,10 @@
 						<div class="form-group col-md-6">
 							<label for="inputrespiratoryRate">Respiratory Rate</label>
 							<div class="d-flex flex-row justify-content-between align-items-center">
-								<select class="form-control mr-1" id="inputrespiratoryRate" name="inputrespiratoryRate" required>
+								<select class="form-control mr-1" id="inputrespiratoryRate" name="respiratoryRate" required>
 									<option value="" disabled selected>Select</option>
-									<option value="female">Normal (30 - 60)</option>
-									<option value="male">Tachypnea</option>
+									<option value="1">Normal (30 - 60)</option>
+									<option value="0">Tachypnea</option>
 								</select>
 							</div>
 							<small class="form-text text-muted">Calculated as number of breaths per minute</small>
@@ -104,10 +104,10 @@
 						<div class="form-group col-md-6">
 							<label for="inputHeartRate">Heart Rate</label>
 							<div class="d-flex flex-row justify-content-between align-items-center">
-								<select class="form-control mr-1" id="inputHeartRate" name="inputHeartRate" required>
+								<select class="form-control mr-1" id="inputHeartRate" name="heartRate" required>
 									<option value="" disabled selected>Select</option>
-									<option value="normal">Normal</option>
-									<option value="tachycardia">Tachycardia</option>
+									<option value="1">Normal</option>
+									<option value="0">Tachycardia</option>
 								</select>
 							</div>
 							<small class="form-text text-muted">Calculated as number of beats per minute</small>
@@ -120,12 +120,12 @@
 					<div class="form-group">
 						<label>Blood Test Result</label>
 						<div class="d-flex flex-row justify-content-between align-items-center">
-							<select class="form-control mr-1" id="bloodTestResult" name="bloodTestResult" required>
+							<select class="form-control mr-1" id="inputBloodTestResult" name="bloodTestResult" required>
 								<option value="" disabled selected>Select</option>
-								<option value="normal">Normal</option>
-								<option value="slightAbnormal">Slightly Abnormal</option>
-								<option value="abnormal">Abnormal</option>
-								<option value="inconclusive">Inconclusive</option>
+								<option value="0">Normal</option>
+								<option value="1">Slightly Abnormal</option>
+								<option value="3">Abnormal</option>
+								<option value="2">Inconclusive</option>
 							</select>
 						</div>
 					</div>
@@ -161,13 +161,13 @@
 						<div class="form-group col-md-12">
 							<label for="inputBirthAsphyxia">Birth Asphyxia?</label>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputBirthAsphyxiaYes" name="inputBirthAsphyxia"
-									value="yes" required />
+								<input type="radio" class="form-check-input" id="inputBirthAsphyxiaYes" name="birthAsphyxia"
+									value="1" required />
 								<label class="form-check-label" for="inputBirthAsphyxiaYes">Yes</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputBirthAsphyxiaNo" name="inputBirthAsphyxia"
-									value="no" required />
+								<input type="radio" class="form-check-input" id="inputBirthAsphyxiaNo" name="birthAsphyxia"
+									value="0" required />
 								<label class="form-check-label" for="inputBirthAsphyxiaNo">No</label>
 							</div>
 							</div>
@@ -177,11 +177,11 @@
 						<div class="form-group col-md-6">
 							<label for="inputBirthDefects">Birth Defects (if any)</label>
 							<div class="d-flex flex-row justify-content-between align-items-center">
-								<select class="form-control mr-1" id="inputBirthDefects" name="inputBirthDefects" required>
+								<select class="form-control mr-1" id="inputBirthDefects" name="birthDefects" required>
 									<option value="" disabled selected>Select</option>
-									<option value="none">None</option>
-									<option value="singular">Singular</option>
-									<option value="multiple">Multiple</option>
+									<option value="1">None</option>
+									<option value="1">Singular</option>
+									<option value="0">Multiple</option>
 								</select>
 							</div>
 							<small class="form-text text-muted">Defects diagnosed within 30 days of birth</small>
@@ -192,10 +192,10 @@
 						<div class="form-group col-md-6">
 							<label for="inputFolicAcidDetails">Pre-Conceptional Folic Acid Count of Mother</label>
 							<div class="d-flex flex-row justify-content-between align-items-center">
-								<select class="form-control mr-1" id="inputFolicAcidDetails" name="inputFolicAcidDetails" required>
+								<select class="form-control mr-1" id="inputFolicAcidDetails" name="folicAcidDetails" required>
 									<option value="" disabled selected>Select</option>
-									<option value="normal">Normal</option>
-									<option value="abnormal">Abnormal</option>
+									<option value="1">Normal</option>
+									<option value="2">Abnormal</option>
 								</select>
 							</div>
 							<small class="form-text text-muted">Mother's Folic Acid Levels before pregnancy</small>
@@ -206,13 +206,13 @@
 						<div class="form-group col-md-6">
 							<label for="inputHoMaternalIllness">H/O Serious Maternal Illness</label><br/>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoMaternalIllnessYes" name="inputHoMaternalIllness"
-									value="yes" required />
+								<input type="radio" class="form-check-input" id="inputHoMaternalIllnessYes" name="hoMaternalIllness"
+									value="1" required />
 								<label class="form-check-label" for="inputHoMaternalIllnessYes">Yes</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoMaternalIllnessNo" name="inputHoMaternalIllness"
-									value="no" required />
+								<input type="radio" class="form-check-input" id="inputHoMaternalIllnessNo" name="hoMaternalIllness"
+									value="0" required />
 								<label class="form-check-label" for="inputHoMaternalIllnessNo">No</label>
 							</div>
 							</div>
@@ -222,13 +222,13 @@
 						<div class="form-group col-md-6">
 							<label for="inputHoSubstanceAbuse">H/O Substance Abuse </label><br/>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoSubstanceAbuseYes" name="inputHoSubstanceAbuse"
-									value="yes" required />
+								<input type="radio" class="form-check-input" id="inputHoSubstanceAbuseYes" name="hoSubstanceAbuse"
+									value="1" required />
 								<label class="form-check-label" for="inputHoSubstanceAbuseYes">Yes</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoSubstanceAbuseNo" name="inputHoSubstanceAbuse"
-									value="no" required />
+								<input type="radio" class="form-check-input" id="inputHoSubstanceAbuseNo" name="hoSubstanceAbuse"
+									value="0" required />
 								<label class="form-check-label" for="inputHoSubstanceAbuseNo">No</label>
 							</div>
 							</div>
@@ -238,13 +238,13 @@
 						<div class="form-group col-md-6">
 							<label for="inputHoRadiationExposure">H/O Radiation Exposure (X-Ray)? </label><br/>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoRadiationExposureYes" name="inputHoRadiationExposure"
-									value="yes" required />
+								<input type="radio" class="form-check-input" id="inputHoRadiationExposureYes" name="hoRadiationExposure"
+									value="1" required />
 								<label class="form-check-label" for="inputHoRadiationExposureYes">Yes</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoRadiationExposureNo" name="inputHoRadiationExposure"
-									value="no" required />
+								<input type="radio" class="form-check-input" id="inputHoRadiationExposureNo" name="hoRadiationExposure"
+									value="0" required />
 								<label class="form-check-label" for="inputHoRadiationExposureNo">No</label>
 							</div>
 							<small class="form-text text-muted">History of Radiation Exposure within 30 days post-birth</small>
@@ -255,13 +255,13 @@
 						<div class="form-group col-md-6">
 							<label for="inputAssistedConception">Assisted Conception (IVF/ART)? </label><br/>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputAssistedConceptionYes" name="inputAssistedConception"
-									value="yes" required />
+								<input type="radio" class="form-check-input" id="inputAssistedConceptionYes" name="assistedConception"
+									value="1" required />
 								<label class="form-check-label" for="inputAssistedConceptionYes">Yes</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputAssistedConceptionNo" name="inputAssistedConception"
-									value="no" required />
+								<input type="radio" class="form-check-input" id="inputAssistedConceptionNo" name="assistedConception"
+									value="0" required />
 								<label class="form-check-label" for="inputAssistedConceptionNo">No</label>
 							</div>
 							<small class="form-text text-muted">Was patient conceived using assisted conception methods?</small>
@@ -272,18 +272,18 @@
 						<div class="form-group col-md-6">
 							<label for="inputHoAnomalies">History of anomalies in mother's previous pregnancies (if any)?</label><br/>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoAnomaliesYes" name="inputHoAnomalies"
-									value="yes" required />
+								<input type="radio" class="form-check-input" id="inputHoAnomaliesYes" name="hoAnomalies"
+									value="1" required />
 								<label class="form-check-label" for="inputAssistedConceptionYes">Yes</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoAnomaliesNo" name="inputHoAnomalies"
-									value="no" required />
+								<input type="radio" class="form-check-input" id="inputHoAnomaliesNo" name="hoAnomalies"
+									value="0" required />
 								<label class="form-check-label" for="inputHoAnomaliesNo">No</label>
 							</div>
 							<div class="form-check form-check-inline">
-								<input type="radio" class="form-check-input" id="inputHoAnomaliesNa" name="inputHoAnomalies"
-									value="na" required />
+								<input type="radio" class="form-check-input" id="inputHoAnomaliesNa" name="hoAnomalies"
+									value="0" required />
 								<label class="form-check-label" for="inputHoAnomaliesNa">NA</label>
 							</div>
 							</div>
@@ -292,8 +292,7 @@
 						<!-- Start Input Previous Abortions -->
 						<div class="form-group col-md-6">
 							<label for="inputPrevAbortions">Number of Previous Abortions (if any)?</label>
-							<input type="number" class="form-control" id="inputPrevAbortions" name="prevAbortions"
-								pattern="\d{1}" required />
+							<input type="number" class="form-control" id="inputPrevAbortions" name="prevAbortions" pattern="\d{1}" required />
 						</div>
 						<!-- End Input Previous Abortions -->
 					</div>
