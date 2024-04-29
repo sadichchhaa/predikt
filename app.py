@@ -11,6 +11,10 @@ model = joblib.load(open('model.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 def preprocess(input_list):
     total_list = []
 

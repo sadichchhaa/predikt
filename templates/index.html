@@ -6,7 +6,6 @@
 	<title>Predikt</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="../styles/styles.css">
 	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -31,13 +30,17 @@
 			<!-- Start Card Body -->
 			<div class="card-body">
 				<!-- Start Form -->
-				<form id="inputForm" action="{{ url_for('predict')}}" method="post" class="needs-validation" novalidate autocomplete="off">
+				<!-- <form id="inputForm" action="{{ url_for('predict')}}" method="post" class="needs-validation" novalidate autocomplete="off"> -->
+					<form id="inputForm" action="{{ url_for('predict')}}" method="post" autocomplete="off">
 					<!-- Start Input Name -->
 					<div class="form-group">
-						<label for="inputName">Name</label>
+						<label for="inputName" class="form-label">Name</label>
 						<input type="text" class="form-control" id="inputName" name="name" placeholder="Your name"
 							required />
-						<small class="form-text text-muted">Please fill your name</small>
+						<!-- <small class="form-text text-muted">Please fill your name</small> -->
+						<div class="invalid-feedback">
+							Please provide a name.
+						</div>
 					</div>
 					<!-- End Input Name -->
 
@@ -309,8 +312,6 @@
 			<!-- End Card Body -->
 		</div>
 		<!-- End Card -->
-		
-		<script src="../app/index.js"></script>
 	</body>
 
 	<footer>
