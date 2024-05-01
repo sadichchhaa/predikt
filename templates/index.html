@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<title>Predikt</title>
-	<link rel="icon" type="image/x-icon" href="https://github.com/sadichchhaa/predikt/blob/master/assets/logo-favicon.ico">
+	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo-favicon.ico') }}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -18,7 +18,7 @@
 	<body class="container bg-light">
 		<!-- Start Header form -->
 		<div class="text-center pt-5">
-			<img src="https://github.com/sadichchhaa/predikt/blob/master/assets/logo.png" alt="network-logo" width="72" height="72" />
+			<img src="{{ url_for('static', filename='logo.png') }}" alt="network-logo" width="72" height="72" />
 			<h2>Predikt</h2>
 			<p>
 				Genetic Disorder Predictor for Early Diagnosis

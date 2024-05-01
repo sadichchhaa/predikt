@@ -11,9 +11,13 @@ model = joblib.load(open('model.pkl', 'rb'))
 def home():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route("/logo.png")
+def logo():
+    return render_template("logo.png")
+
+@app.route("/logo-favicon.ico")
+def favicon():
+    return render_template("logo-favicon.ico")
 
 def preprocess(input_list):
     total_list = []
