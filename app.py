@@ -112,12 +112,14 @@ def predict():
     feature_list = request.form.to_dict()
     final_features = preprocess(feature_list)
     final_features = np.array(final_features, dtype=float)
-    prediction = model.predict(final_features)
-    
 
-    output = int(prediction[0])
-    print(output)
-    type(output)
+    if(healthyCriteria(final_features) == True):
+        finalPrediction = 9
+    else:
+        prediction = model.predict(final_features)
+        finalPrediction = prediction[0]
+
+    output = int(finalPrediction)
     if output == 0:
         text = "Cystic Fibrosis"
     elif output == 1:
@@ -137,10 +139,10 @@ def predict():
     elif output == 8:
         text = "Alzheimer's Disease"
     else:
-        text = "Healthy"
+        text = "Healthy! 🙂"
 
     return render_template('verdict.html', prediction_text=text)
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+def healthyCriteria(input_list):
+    if(input_list[0,9] == 1 and input_list[0,10] == 1 and  input_list[0,19] == 0):
+        return True
